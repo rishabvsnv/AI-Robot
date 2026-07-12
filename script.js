@@ -246,10 +246,3 @@ setInterval(() => {
     const value = Math.floor(Math.random() * 100);
     screenValue.textContent = value + "%";
 }, 3000);
-
-const screenValue = document.querySelector(".screen-value");
-
-setInterval(() => {
-    const value = Math.floor(Math.random() * 100);
-    screenValue.textContent = value + "%";
-}, 3000);

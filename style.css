@@ -479,7 +479,7 @@ body::before {
     border-radius: 50%;
     top: 5px;
     left: 5px;
-    animation: lookAround 6s infinite;
+    /* animation: lookAround 6s infinite; */
 }
 
 /* =========================
@@ -644,7 +644,7 @@ body::before {
     }
 }
 
-@keyframes lookAround {
+/* @keyframes lookAround {
 
     0%,
     100% {
@@ -662,7 +662,7 @@ body::before {
     75% {
         transform: translate(0, 2px);
     }
-}
+} */
 
 /* =========================
    HERO SECTION
