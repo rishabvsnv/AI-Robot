@@ -110,6 +110,16 @@ robot.addEventListener("click", () => {
         speech.pitch = 1.1;
         speech.volume = 1;
 
+        const mouth = document.querySelector(".mouth");
+
+        speech.onstart = () => {
+            mouth.classList.add("talking");
+        };
+
+        speech.onend = () => {
+            mouth.classList.remove("talking");
+        };
+
         speechSynthesis.speak(speech);
     }
 
@@ -246,3 +256,36 @@ setInterval(() => {
     const value = Math.floor(Math.random() * 100);
     screenValue.textContent = value + "%";
 }, 3000);
+
+
+const particlesContainer = document.querySelector(".particles");
+
+for (let i = 0; i < 50; i++) {
+    const particle = document.createElement("span");
+
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.animationDuration =
+        5 + Math.random() * 10 + "s";
+
+    particle.style.animationDelay =
+        Math.random() * 10 + "s";
+
+    particlesContainer.appendChild(particle);
+}
+
+const head = document.querySelector(".head");
+
+document.addEventListener("mousemove", (e) => {
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    const rotateY =
+        ((e.clientX - centerX) / centerX) * 10;
+
+    const rotateX =
+        -((e.clientY - centerY) / centerY) * 10;
+
+    head.style.transform =
+        `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
