@@ -1,0 +1,894 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background:
+        radial-gradient(circle at top,
+            #1e3a8a 0%,
+            #0f172a 45%,
+            #020617 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: sans-serif;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(56, 189, 248, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, .05) 1px, transparent 1px);
+
+    background-size: 50px 50px;
+
+    pointer-events: none;
+}
+
+/* Robot Container */
+
+.robot {
+    position: relative;
+    width: 220px;
+    height: 520px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Ground Shadow */
+
+.robot::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 28px;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 50%;
+    bottom: 10px;
+    left: 20px;
+    filter: blur(10px);
+    z-index: -1;
+    animation: shadowFloat 3s ease-in-out infinite;
+}
+
+/* Head */
+
+.head {
+    position: absolute;
+    width: 150px;
+    height: 120px;
+    left: 35px;
+    border-radius: 25px;
+    background: linear-gradient(145deg,
+            #f8fafc,
+            #cbd5e1,
+            #94a3b8);
+    box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, .5),
+        0 10px 30px rgba(0, 0, 0, .35);
+}
+
+/* Antenna */
+
+.antenna {
+    position: absolute;
+    width: 8px;
+    height: 30px;
+    background: #d8e3ef;
+    left: 106px;
+    top: -28px;
+}
+
+.antenna::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #38bdf8;
+    left: -5px;
+    top: -12px;
+    animation: pulse 1.5s infinite;
+}
+
+/* Eyes */
+
+.eye {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #38bdf8;
+    top: 40px;
+    box-shadow:
+        0 0 10px #38bdf8,
+        0 0 20px #38bdf8;
+    animation: blink 4s infinite;
+}
+
+.left-eye {
+    left: 38px;
+}
+
+.right-eye {
+    right: 38px;
+}
+
+/* Mouth */
+
+.mouth {
+    position: absolute;
+    width: 60px;
+    height: 8px;
+    border-radius: 10px;
+    background: #64748b;
+    left: 45px;
+    bottom: 28px;
+}
+
+/* Neck */
+
+.neck {
+    position: absolute;
+    width: 24px;
+    height: 18px;
+    background: #94a3b8;
+    left: 98px;
+    top: 120px;
+    border-radius: 4px;
+}
+
+/* Body */
+
+.body {
+    position: absolute;
+    width: 170px;
+    height: 180px;
+    left: 25px;
+    top: 138px;
+    border-radius: 22px;
+    background: linear-gradient(145deg,
+            #f8fafc,
+            #cbd5e1,
+            #94a3b8);
+    box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, .5),
+        0 10px 25px rgba(0, 0, 0, .25);
+}
+
+/* Chest Screen */
+
+.screen {
+    position: absolute;
+    width: 90px;
+    height: 70px;
+    left: 40px;
+    top: 28px;
+    border-radius: 12px;
+    background: #020617;
+    border: 4px solid #38bdf8;
+    overflow: hidden;
+    box-shadow:
+        0 0 15px rgba(56, 189, 248, .5);
+}
+
+.screen::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: #38bdf8;
+    top: -10px;
+    left: 0;
+    box-shadow: 0 0 20px #38bdf8;
+    animation: scan 2s linear infinite;
+}
+
+.screen::after {
+    content: "";
+    position: absolute;
+    width: 42px;
+    height: 8px;
+    background: #38bdf8;
+    left: 20px;
+    top: 30px;
+    border-radius: 5px;
+}
+
+/* Buttons */
+
+.btn {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #38bdf8;
+    bottom: 25px;
+    animation: buttonGlow 2s infinite;
+}
+
+.b1 {
+    left: 58px;
+}
+
+.b2 {
+    left: 80px;
+    animation-delay: .3s;
+}
+
+.b3 {
+    left: 102px;
+    animation-delay: .6s;
+}
+
+/* Arms */
+
+.arm {
+    position: absolute;
+    width: 26px;
+    height: 110px;
+    border-radius: 20px;
+    top: 155px;
+    background: linear-gradient(145deg,
+            #f8fafc,
+            #cbd5e1,
+            #94a3b8);
+}
+
+.left-arm {
+    left: -5px;
+    transform-origin: top center;
+    animation: leftArm 2s ease-in-out infinite alternate;
+}
+
+.right-arm {
+    right: -5px;
+    transform-origin: top center;
+    animation: rightArm 2s ease-in-out infinite alternate;
+}
+
+/* Hands */
+
+.hand {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #d8e3ef;
+    bottom: -18px;
+    left: -5px;
+}
+
+/* Legs */
+
+.leg {
+    position: absolute;
+    width: 34px;
+    height: 130px;
+    border-radius: 20px;
+    top: 315px;
+    background: linear-gradient(145deg,
+            #f8fafc,
+            #cbd5e1,
+            #94a3b8);
+}
+
+.left-leg {
+    left: 60px;
+}
+
+.right-leg {
+    right: 60px;
+}
+
+/* Feet */
+
+.foot {
+    position: absolute;
+    width: 56px;
+    height: 22px;
+    background: #94a3b8;
+    border-radius: 20px;
+    bottom: -12px;
+    left: -11px;
+}
+
+/* Animations */
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes shadowFloat {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: .35;
+    }
+
+    50% {
+        transform: scale(.85);
+        opacity: .2;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    45%,
+    50%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    47%,
+    48% {
+        transform: scaleY(0.08);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 #38bdf8;
+    }
+
+    50% {
+        box-shadow:
+            0 0 20px #38bdf8,
+            0 0 40px #38bdf8;
+    }
+
+    100% {
+        box-shadow: 0 0 0 #38bdf8;
+    }
+}
+
+@keyframes scan {
+    from {
+        top: -10px;
+    }
+
+    to {
+        top: 100%;
+    }
+}
+
+@keyframes buttonGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 #38bdf8;
+    }
+
+    50% {
+        box-shadow:
+            0 0 10px #38bdf8,
+            0 0 20px #38bdf8;
+    }
+}
+
+@keyframes leftArm {
+    from {
+        transform: rotate(10deg);
+    }
+
+    to {
+        transform: rotate(25deg);
+    }
+}
+
+@keyframes rightArm {
+    from {
+        transform: rotate(-10deg);
+    }
+
+    to {
+        transform: rotate(-25deg);
+    }
+}
+
+/* =========================
+   SCENE
+========================= */
+
+.scene {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* margin-top: 30px; */
+}
+
+/* =========================
+   PLATFORM
+========================= */
+
+.platform {
+    position: absolute;
+    width: 300px;
+    /* height: 40px; */
+    /* bottom: -20px; */
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center,
+            rgba(56, 189, 248, .4),
+            rgba(56, 189, 248, .05),
+            transparent);
+    filter: blur(10px);
+    z-index: -2;
+}
+
+/* =========================
+   FACE PANEL
+========================= */
+
+.face-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================
+   EARS
+========================= */
+
+.ear {
+    position: absolute;
+    width: 18px;
+    height: 45px;
+    background: linear-gradient(145deg,
+            #e2e8f0,
+            #94a3b8);
+    top: 35px;
+    border-radius: 10px;
+}
+
+.left-ear {
+    left: -12px;
+}
+
+.right-ear {
+    right: -12px;
+}
+
+/* =========================
+   PUPILS
+========================= */
+
+.pupil {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    animation: lookAround 6s infinite;
+}
+
+/* =========================
+   STATUS TEXT
+========================= */
+
+.status {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #38bdf8;
+    font-weight: bold;
+    text-shadow: 0 0 10px #38bdf8;
+}
+
+/* =========================
+   SCREEN CONTENT
+========================= */
+
+.scan-line {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: #38bdf8;
+    box-shadow: 0 0 15px #38bdf8;
+    animation: scanLine 2s linear infinite;
+}
+
+.hud-circle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #38bdf8;
+    border-radius: 50%;
+    top: 15px;
+    left: 22px;
+    animation: rotateHud 6s linear infinite;
+}
+
+/* =========================
+   BODY PANEL
+========================= */
+
+.panel-row {
+    position: absolute;
+    bottom: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.green {
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+.blue {
+    background: #38bdf8;
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+.red {
+    background: #ef4444;
+    box-shadow: 0 0 10px #ef4444;
+}
+
+/* =========================
+   NAMEPLATE
+========================= */
+
+.robot-name {
+    position: absolute;
+    bottom: 12px;
+    width: 100%;
+    text-align: center;
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+/* =========================
+   SHOULDERS
+========================= */
+
+.shoulder {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(145deg,
+            #f8fafc,
+            #94a3b8);
+    top: -10px;
+    left: -4px;
+}
+
+/* =========================
+   ROBOT FINGERS
+========================= */
+
+.hand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.hand span {
+    width: 3px;
+    height: 12px;
+    background: #94a3b8;
+    border-radius: 10px;
+}
+
+/* =========================
+   KNEES
+========================= */
+
+.knee {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #94a3b8;
+    top: 50px;
+    left: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .3);
+}
+
+/* =========================
+   EXTRA ANIMATIONS
+========================= */
+
+@keyframes rotateHud {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scanLine {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: 65px;
+    }
+}
+
+@keyframes lookAround {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(2px, 0);
+    }
+
+    50% {
+        transform: translate(-2px, 0);
+    }
+
+    75% {
+        transform: translate(0, 2px);
+    }
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    z-index: 10;
+}
+
+.hero h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    letter-spacing: 8px;
+    margin-bottom: 8px;
+    text-shadow:
+        0 0 15px rgba(56, 189, 248, .7),
+        0 0 30px rgba(56, 189, 248, .4);
+}
+
+.hero p {
+    color: #94a3b8;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+/* =========================
+   SCREEN DATA
+========================= */
+
+.screen-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.screen-title {
+    color: #38bdf8;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.screen-value {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    text-shadow: 0 0 10px #38bdf8;
+}
+
+/* =========================
+   TELEMETRY
+========================= */
+
+.telemetry {
+    position: absolute;
+    width: 100%;
+    top: 105px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.battery,
+.signal {
+    background: rgba(15, 23, 42, .85);
+    border: 1px solid rgba(56, 189, 248, .4);
+    border-radius: 8px;
+    padding: 4px 8px;
+    color: #38bdf8;
+    font-size: 10px;
+    backdrop-filter: blur(5px);
+}
+
+/* =========================
+   COMMAND PANEL
+========================= */
+
+.commands {
+    position: fixed;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 260px;
+
+    background: rgba(15, 23, 42, .55);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(56, 189, 248, .3);
+
+    border-radius: 20px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 0 25px rgba(56, 189, 248, .15);
+}
+
+.commands h3 {
+    color: #38bdf8;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.commands ul {
+    list-style: none;
+}
+
+.commands li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    font-size: 13px;
+    color: #cbd5e1;
+}
+
+.commands li:last-child {
+    border-bottom: none;
+}
+
+/* =========================
+   FOOTER BADGE
+========================= */
+
+.footer-badge {
+    position: fixed;
+
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #94a3b8;
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    padding: 8px 16px;
+
+    background: rgba(15, 23, 42, .5);
+    border: 1px solid rgba(56, 189, 248, .2);
+    border-radius: 50px;
+
+    backdrop-filter: blur(10px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .commands {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .hero {
+        top: 15px;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+        letter-spacing: 4px;
+    }
+
+    .hero p {
+        font-size: .8rem;
+    }
+
+    .robot {
+        transform: scale(.85);
+    }
+}
+
+.head,
+.body {
+    animation:
+        breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.platform::before {
+    content: "";
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+    border: 2px solid rgba(56,189,248,.15);
+
+    left: 50%;
+    top: -90px;
+
+    transform: translateX(-50%);
+
+    animation: rotateRing 15s linear infinite;
+}
+
+@keyframes rotateRing {
+    from {
+        transform: translateX(-50%) rotate(0deg);
+    }
+
+    to {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
